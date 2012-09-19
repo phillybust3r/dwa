@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
+
 	<title>CSCI E-75 P1</title>
 	<meta name="description" content="This Problem Set 1 for CSCIE 75">
-
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	
 	<script type="text/javascript" src="TacoComponents/TSWBrowserDetect.js"></script>
 	<script type="text/javascript" src="TacoComponents/TSWUtils.js"></script>
 	<script type="text/javascript" src="TacoComponents/TSWDomUtils.js"></script>
