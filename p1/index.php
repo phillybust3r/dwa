@@ -26,9 +26,8 @@
 </head>
 
 <body>
-	<span style="font-family: &quot;Arial Black&quot;; ">	
-		<h1>Philipp Cortez Bantillo</h1>
-	</span>
+		
+	<h1>Philipp Cortez Bantillo</h1>
 	
 	<!-- BEGIN COMPONENT Tabbed Content - Taco HTML Edit -->
 	<div id="myTabbedContent">
