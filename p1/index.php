@@ -13,7 +13,6 @@ body {
 
 </style>
 
-<link rel="stylesheet" type="text/css" href="style.css" />
 <title>CSCI E-75 P1</title>
 
 </head>
