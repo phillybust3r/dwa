@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+
+body {
+	border-left-width: 5px;
+	border-bottom-width: 5px;
+	border-right-width: 5px;
+	border-top-width: 1px;
+	background-color: #71ff6d;
+}
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="style.css" />
 <title>CSCI E-75 P1</title>
+
 </head>
 
 <body>
