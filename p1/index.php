@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
+	
+	<title>CSCI E-75 P1</title>
+	<meta name="description" content="This Problem Set 1 for CSCIE 75">
 
-body {
-	border-left-width: 5px;
-	border-bottom-width: 5px;
-	border-right-width: 5px;
-	border-top-width: 1px;
-	background-color: #71ff6d;
-}
+	<script type="text/javascript" src="TacoComponents/TSWBrowserDetect.js"></script>
+	<script type="text/javascript" src="TacoComponents/TSWUtils.js"></script>
+	<script type="text/javascript" src="TacoComponents/TSWDomUtils.js"></script>
+	<script type="text/javascript" src="TacoComponents/TSWTabbedContent.js"></script>
+	<link rel="stylesheet" type="text/css" href="TacoComponents/TSWTabbedContent_myTabbedContent_2.css" />
 
-</style>
+	<style type="text/css">
 
-<title>CSCI E-75 P1</title>
+		body {
+			border-left-width: 5px;
+			border-bottom-width: 5px;
+			border-right-width: 5px;
+			border-top-width: 1px;
+			background-color: #71ff6d;
+		}
 
-<script type="text/javascript" src="TacoComponents/TSWBrowserDetect.js"></script>
-<script type="text/javascript" src="TacoComponents/TSWUtils.js"></script>
-<script type="text/javascript" src="TacoComponents/TSWDomUtils.js"></script>
-<script type="text/javascript" src="TacoComponents/TSWTabbedContent.js"></script>
-<link rel="stylesheet" type="text/css" href="TacoComponents/TSWTabbedContent_myTabbedContent_2.css" />
+	</style>
+
 </head>
 
 <body>
-	<h1>Philipp Cortez Bantillo</h1>
+	<span style="font-family: &quot;Arial Black&quot;; ">	
+		<h1>Philipp Cortez Bantillo</h1>
+	</span>
+	
 	<!-- BEGIN COMPONENT Tabbed Content - Taco HTML Edit -->
 	<div id="myTabbedContent">
 	<ul class="tswTabBox">
