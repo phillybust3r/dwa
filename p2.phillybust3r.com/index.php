@@ -24,6 +24,10 @@
 # Routing
     Router::$routes = array(
     	'/' => '/index',     # default controller when "/" is requested
+		'/users' => 'users',
+		'/blog' => 'blog',
+		
+		
     );
     
 # Match requested uri to any routes and instantiate controller
