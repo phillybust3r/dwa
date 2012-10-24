@@ -15,7 +15,8 @@ class base_controller {
 		# Instantiate User class
 			$this->userObj = new User();
 			
-		# Authenticate / load user
+		# Authenticate / load user This checks the cookie and logs in the user to the
+		# webpage
 			$this->user = $this->userObj->authenticate();			
 							
 		# Set up templates
