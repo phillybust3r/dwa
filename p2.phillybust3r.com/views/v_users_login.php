@@ -37,7 +37,7 @@
 <body>
 
 	<h1>
-		Blabbr
+		Blabbr users login
 	</h1>
 
 	<form method='POST' action='/users/p_login'>

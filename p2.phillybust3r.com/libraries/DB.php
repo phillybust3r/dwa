@@ -112,6 +112,7 @@ class DB {
 
 		// store query history
 		$this->query_history[] = $sql;
+		
 			
 		// send query
 		$result = mysql_query($sql, $this->connection);

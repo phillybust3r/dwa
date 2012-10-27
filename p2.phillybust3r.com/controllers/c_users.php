@@ -24,18 +24,47 @@ class users_controller extends base_controller {
 	public function p_signup() {
 		
 		# Dump out the results of POST to see what the form submitted
-	print_r($_POST);
+		print_r($_POST);
 	
-	# Encrypt the password	
-	$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);	
-
+		# Encrypt the password	
+		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);	
+	
 		# More data we want stored with the user	
 		$_POST['created']  = Time::now();
 		$_POST['modified'] = Time::now();
+		$_POST['token'] = sha1(TOKEN_SALT.$_POST['email']);	
 		
-		$_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());		
-	# Insert this user into the database 
-	$user_id = DB::instance(DB_NAME)->insert("users", $_POST);
+	
+		# Search the db for this email and password
+		# Retrieve the token if it's available
+		$q = "SELECT email 
+			FROM users 
+			WHERE email = '".$_POST['email']."'";
+	
+		$email = DB::instance(DB_NAME)->select_field($q);	
+		
+		# only insert people that do not have existing accounts
+		if ($email != "") {
+		
+			print_r("EMAIL FOUND, PLEASE LOGIN INSTEAD");
+		}
+		else {
+		
+			print_r($email); 
+						
+			# Insert this user into the database 
+			DB::instance(DB_NAME)->insert('users', $_POST);
+		
+	
+		}
+		
+		# Send them to the posts page
+		Router::redirect("/users/login");
+			
+		
+		
+
+
 	}
 	
 	

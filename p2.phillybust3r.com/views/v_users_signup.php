@@ -47,8 +47,8 @@
 		<input type='text' name='last_name'>
 		<br><br>
 		
-		Birthday:<br> <input type="date" name="bday">
-		<br><br>
+		<!--Birthday:<br> <input type="date" name="bday">
+		<br><br-->
 		
 		Email:<br>
 		<input type='text' name='email'>
