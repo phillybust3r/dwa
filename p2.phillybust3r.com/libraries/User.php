@@ -45,10 +45,10 @@ class User {
 					WHERE token = '".$token."'
 					LIMIT 1";	
 					
-				$this->_user = DB::instance(DB)->select_row($q, "object");
+				$this->_user = DB::instance(DB_NAME)->select_row($q, "object");
 																			
 			# Configure user's avatar (if they're logged in)
-				if($this->_user) {
+		/*		if($this->_user) {
 					if(!$this->_user->avatar) 
 						$this->_user->avatar = PLACE_HOLDER_IMAGE;
 					else 
@@ -57,6 +57,8 @@ class User {
 					$this->_user->avatar_small  = Utils::postfix("_200_200", $this->_user->avatar);
 					$this->_user->avatar_medium = Utils::postfix("_600_400", $this->_user->avatar);
 				}
+		
+		*/
 			
 		}
 				

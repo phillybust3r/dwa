@@ -34,6 +34,8 @@ A email designated to receive messages from the server. Examples:
 # Default DB name for this app
 	define('DB_NAME', "phillybu_p2_phillybust3r_com"); 
 
+# Timezone
+	define('TIMEZONE', 'America/New_York');
 
 # If your app is going to have outgoing emails, you should fill in your SMTP settings
 # For this you could use gmail SMTP or something like http://sendgrid.com/
@@ -42,5 +44,5 @@ A email designated to receive messages from the server. Examples:
 	//define('SMTP_PASSWORD', '');
 
 # For extra security, you might want to set different salts than what the core uses
-define('PASSWORD_SALT', 'philippines');
-define('TOKEN_SALT', 'iloilo');
+	//define('PASSWORD_SALT', '');
+	//define('TOKEN_SALT', '');
