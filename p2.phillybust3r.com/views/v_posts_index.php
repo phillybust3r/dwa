@@ -27,7 +27,7 @@ doctype declaration at the beginning of your document such as:
 <ul id="myNavigationMenu">
 	<li><a href="/index">Home</a>
 	</li>
-	<li><a href="#">@ Connect</a>
+	<li><a href="/posts/connections">@ Connect</a>
 	</li>
 	<li><a href="/posts/users"># Followers</a>
 	</li>

@@ -28,7 +28,7 @@ class users_controller extends base_controller {
 	public function p_signup() {
 	
 		# What data was submitted
-		print_r($_POST);
+		#print_r($_POST);
 		
 		# Encrypt password
 		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
@@ -52,11 +52,21 @@ class users_controller extends base_controller {
         	                                        
         	# Insert this user into the database 
             DB::instance(DB_NAME)->insert('users', $_POST);
-                
+        
         }
 		
 		
-		echo "You're registered! Now go <a href='/users/login'>login</a>";
+		
+		echo "You're registered! Now go <a href='/'>login</a>";
+		
+		Router::redirect("/");
+	
+		# Load the template
+		#$this->template->content = View::instance("v_users_login");
+		
+		# Render the template
+		#echo $this->template;
+
 	
 	}
 	
@@ -99,14 +109,14 @@ class users_controller extends base_controller {
 		# Login failed
 		if($token == "") {
 			print_r("FAIL");
-			Router::redirect("/users/login");
+			Router::redirect("/");
 		}
 		# Login passed
 		else {
 			
 			setcookie("token", $token, strtotime('+2 weeks'), '/');
 						
-			Router::redirect("/users/profile");
+			Router::redirect("/");
 		
 
 		}
@@ -134,8 +144,8 @@ class users_controller extends base_controller {
 		# Delete their token cookie - effectively logging them out
 		setcookie("token", "", strtotime('-1 year'), '/');
 		
-		echo "You have been logged out.";
-
+		Router::redirect("/index");
+		
 	}
 
 	
@@ -148,7 +158,7 @@ class users_controller extends base_controller {
 		
 		# Not logged in
 		if(!$this->user) {
-			echo "Members only. <a href='/users/login/'>Please login.</a>";
+			echo "Members only. <a href='/'>Please login.</a>";
 			return;
 		}
 		
@@ -160,11 +170,26 @@ class users_controller extends base_controller {
 			echo "You did not specify a user";
 		} else {
 		
+		
+		
+		
 			# Setup the view
 			$this->template->content = View::instance("v_users_profile");
 			$this->template->title   = "Profile for ".$user_name;
 						
 			# Don't need to pass any variables to the view because all we need is $user and that's already set globally in c_base.php
+			
+			# this only retrieves the user posts
+			$q = "SELECT *
+				FROM users_users";
+			
+			$posts = DB::instance(DB_NAME)->select_rows($q);
+		
+			print_r($posts);
+		 
+			# Pass data to the view
+			#$this->template->content->posts = $posts;
+		
 							
 			# Render the view
 			echo $this->template;

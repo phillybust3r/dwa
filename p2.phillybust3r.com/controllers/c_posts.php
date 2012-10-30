@@ -7,7 +7,7 @@ class posts_controller extends base_controller {
 		parent::__construct();
 		
 		if(!$this->user) {
-			die("Members only. <a href='/users/login'>Please login</a>");
+			die("Members only. <a href='/'>Please login</a>");
 		}
 	
 	}
@@ -18,9 +18,16 @@ class posts_controller extends base_controller {
 		$this->template->content = View::instance("v_posts_index");
 		$this->template->title   = "All the posts";
 	
+		#$q = "SELECT *
+		#	FROM posts
+		#	JOIN users USING(user_id)";
+	
+		$user_id = $this->user->user_id;
+	
+		# this only retrieves the user posts
 		$q = "SELECT *
 			FROM posts
-			JOIN users USING(user_id)";
+			JOIN users USING(user_id) where user_id = ".$user_id." ORDER by post_created DESC";
 			
 		$posts = DB::instance(DB_NAME)->select_rows($q);
 		
@@ -28,6 +35,8 @@ class posts_controller extends base_controller {
 		 
 		# Pass data to the view
 		$this->template->content->posts = $posts;
+		
+		
 			
 		# Render the view
 		echo $this->template;
@@ -84,17 +93,35 @@ class posts_controller extends base_controller {
 	
 	}
 	
-	public function p_add() {
+	public function p_add() {			
+		
+		$post['post_created']  = Time::now();
+		$post['modified'] = Time::now();
+		$post['user_id']  = $this->user->user_id;
+		$post['content'] = $_POST['content'];
+		
+		DB::instance(DB_NAME)->insert('posts', $post);
+		
+		Router::redirect("/users/profile");
 	
-		#print_r($_POST);
+	}
+	
+	public function connections() {
+	
+		# Set up the view
+		$this->template->content = View::instance("v_connections");
+		$this->template->title = "Connections";
 		
-		$_POST['created']  = Time::now();
-		$_POST['modified'] = Time::now();
-		$_POST['user_id']  = $this->user->user_id;
-		
-		DB::instance(DB_NAME)->insert('posts', $_POST);
-		
-		echo "Your post has been added. <a href='/posts/add'>Add another</a>";
+		# Render the view
+		echo $this->template;
+	
+	
+	}
+	
+	
+	public function p_connections() {
+	
+	
 	
 	}
 
