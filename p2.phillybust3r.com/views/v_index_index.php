@@ -1,40 +1,10 @@
 
-
+<link rel="stylesheet" href="../css/global.css" type="text/css"/> 
 <style type='text/css'>
 	
 
 	
-	
-		h1 {
-			text-align:center;
-			text-decoration:none;
-		}
-	
-		body { 
-			background: url("images/background.png")
-			
-		}
-		
-		.left {
-			width:420px;
-		}
-		
-		.right {
-			width:420px;
-		}
-		
-		
-		#left {
-			float:left;
-		}
-		
-		#right {
-			float:right;
-		}
-		
-		#footer {
-			clear:both;
-		}
+
 		
 </style>
 
@@ -49,7 +19,7 @@
 		<img src='images/blabbrlogo.png' alt='Blabbr'><br>
 		</div>
 	
-		<div class='column' id='left'>
+		<div class='column' id='right'>
 		LOGIN:
 		<form method='POST' action='/users/p_login'>
 			<input type='text' name='email' placeholder ='EMAIL'>	
