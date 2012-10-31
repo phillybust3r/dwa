@@ -108,9 +108,20 @@ class posts_controller extends base_controller {
 	
 	public function connections() {
 	
+		$q = "SELECT *
+			from users_users 
+			JOIN users USING(user_id) where user_id_followed = ".$this->user->user_id;
+	
+		
+		# retrieve the users that are following you 
+		$stalkers = DB::instance(DB_NAME)->select_rows($q);
+				
 		# Set up the view
 		$this->template->content = View::instance("v_connections");
 		$this->template->title = "Connections";
+		
+		# Pass data to the view
+		$this->template->content->stalkers = $stalkers;
 		
 		# Render the view
 		echo $this->template;
@@ -119,12 +130,7 @@ class posts_controller extends base_controller {
 	}
 	
 	
-	public function p_connections() {
 	
-	
-	
-	}
-
 
 
 

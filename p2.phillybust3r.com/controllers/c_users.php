@@ -85,6 +85,12 @@ class users_controller extends base_controller {
 	}
 	
 	
+	public function p_stalkers() {
+	
+		print_r($_POST);		
+	}
+	
+	
 	/*-------------------------------------------------------------------------------------------------
 	
 	-------------------------------------------------------------------------------------------------*/
@@ -153,9 +159,7 @@ class users_controller extends base_controller {
 	
 	-------------------------------------------------------------------------------------------------*/
 	public function profile($user_name = NULL) {
-	
-		
-		
+			
 		# Not logged in
 		if(!$this->user) {
 			echo "Members only. <a href='/'>Please login.</a>";
