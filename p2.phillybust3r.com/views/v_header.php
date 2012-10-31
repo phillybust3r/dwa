@@ -11,7 +11,7 @@ doctype declaration at the beginning of your document such as:
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 TRANSITIONAL//EN" "http://www.w3.org/TR/html4/loose.dtd">
 -->
 <ul id="myNavigationMenu">
-	<li><a href="/index">HEADER Home</a>
+	<li><a href="/index">Home</a>
 	</li>
 	<li><a href="/posts/connections">@ Connect</a>
 	</li>

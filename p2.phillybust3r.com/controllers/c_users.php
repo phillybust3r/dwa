@@ -116,7 +116,7 @@ class users_controller extends base_controller {
 			
 			setcookie("token", $token, strtotime('+2 weeks'), '/');
 						
-			Router::redirect("/");
+			Router::redirect("/index");
 		
 
 		}
@@ -170,25 +170,34 @@ class users_controller extends base_controller {
 			echo "You did not specify a user";
 		} else {
 		
-		
-		
-		
 			# Setup the view
 			$this->template->content = View::instance("v_users_profile");
 			$this->template->title   = "Profile for ".$user_name;
 						
 			# Don't need to pass any variables to the view because all we need is $user and that's already set globally in c_base.php
 			
-			# this only retrieves the user posts
-			$q = "SELECT *
-				FROM users_users";
+			# retrieve users that you are following
+			$q = "SELECT user_id_followed
+				FROM users_users where user_id =".$this->user->user_id;
+	
+			$users_followed	= DB::instance(DB_NAME)->select_rows($q);
 			
-			$posts = DB::instance(DB_NAME)->select_rows($q);
+			$posts;
 		
-			print_r($posts);
+			$index = 0;
+			foreach ($users_followed as $key => $value) {
+						
+				$q = "SELECT *
+					FROM posts
+					JOIN users USING(user_id) where user_id = ".$value['user_id_followed']." ORDER by post_created DESC";
+	
+				# add the posts 
+				$posts[$index] = DB::instance(DB_NAME)->select_rows($q);
+				$index++;
+			}		
 		 
 			# Pass data to the view
-			#$this->template->content->posts = $posts;
+			$this->template->content->posts = $posts;
 		
 							
 			# Render the view
