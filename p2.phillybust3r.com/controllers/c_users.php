@@ -44,15 +44,20 @@ class users_controller extends base_controller {
         $q = "SELECT email 
               FROM users 
               WHERE email = '".$_POST['email']."'";
+
+	
         
         $email = DB::instance(DB_NAME)->select_field($q);       
                 
+		print_r($email);
+
         # only insert people that do not have existing accounts
         if ($email == "") {
         	                                        
         	# Insert this user into the database 
             DB::instance(DB_NAME)->insert('users', $_POST);
-        
+    
+			print_r("HERE");    
         }
 		
 		

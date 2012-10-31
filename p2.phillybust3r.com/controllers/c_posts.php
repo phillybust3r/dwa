@@ -77,8 +77,12 @@ class posts_controller extends base_controller {
 	
 	public function unfollow($user_id_followed = NULL) {
 	
-		
+		$where_condition = "WHERE user_id_followed =".$user_id_followed." AND user_id=".$this->user->user_id;	
 	
+		DB::instance(DB_NAME)->delete("users_users", $where_condition);
+		
+		Router::redirect("/posts/users");
+
 	}
 	
 	
@@ -115,13 +119,25 @@ class posts_controller extends base_controller {
 		
 		# retrieve the users that are following you 
 		$stalkers = DB::instance(DB_NAME)->select_rows($q);
-				
+		
+		print_r("IM HERE");
+		
+		print_r($stalkers);
+		
+		#$q = "SELECT * from posts 
+	#		JOIN users USING(user_id) where user_id = ".$_POST['user_id'];
+	
+	
+	#	$posts = DB::instance(DB_NAME)->select_field($q);
+					
 		# Set up the view
 		$this->template->content = View::instance("v_connections");
 		$this->template->title = "Connections";
 		
 		# Pass data to the view
 		$this->template->content->stalkers = $stalkers;
+	
+	#	$this->template->content->posts = $posts;
 		
 		# Render the view
 		echo $this->template;

@@ -11,11 +11,9 @@ function popWindow(wName){
 -->
 </script>
 
-<form action="../views/v_stalker_profile.php" method="post" target="Details" onSubmit="return popWindow(this.target)">
-	<input type="hidden" name ="age" value="23 years old">
-	<input type="hidden" name="experience" value="expert">
-	<input type="submit" value="John">
-</form>
+<br><br><br>
+
+
 
 
 <!--? print_r($stalkers)?-->
@@ -23,29 +21,16 @@ function popWindow(wName){
 <br><br><br>
 <?php foreach($stalkers as $key => $post): ?>
 
-	
 	<?=$post['first_name'] ?> is following you.
 	<? $user_id = $post['user_id'] ?>
-	
-	<form method='POST' action='/users/p_stalkers'>
-		<input type=hidden name='user_id' value=<?=$user_id?> >	
-		<input type='Submit' value = 'Profile'>
+
+	<form action="../views/v_stalker_profile.php" method="post" target="Details" onSubmit="return 	popWindow(this.target)">
+		<input type="hidden" name ="user_id" value=<?=$user_id?> >
+		<input type="submit" value="Profile">
 	</form>
+		
 	<br>
 <? endforeach; ?>
 
-
-<?php foreach($stalkers as $key => $post): ?>
-
-	
-	<?=$post['first_name'] ?> is following you.
-	<? $user_id = $post['user_id'] ?>
-	
-	<form method='POST' action='/users/p_stalkers'>
-		<input type=hidden name='user_id' value=<?=$user_id?> >	
-		<input type='Submit' value = 'Profile'>
-	</form>
-	<br>
-<? endforeach; ?>
 
 	
