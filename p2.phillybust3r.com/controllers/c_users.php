@@ -68,15 +68,15 @@ class users_controller extends base_controller {
 		
 		
 		
-		#Router::redirect("/");
+		Router::redirect("/");
 	
 		# Load the template
-		$this->template->content = View::instance("v_users_login");
+		#$this->template->content = View::instance("v_users_login");
 	
-		$this->template->content->posts = $_POST;
+		#$this->template->content->posts = $_POST;
 		
 		# Render the template
-		echo $this->template;
+		#echo $this->template;
 
 	
 	}
