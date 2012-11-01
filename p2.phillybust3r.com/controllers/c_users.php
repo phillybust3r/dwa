@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 
 class users_controller extends base_controller {
 
@@ -52,7 +53,7 @@ class users_controller extends base_controller {
 		print_r($email);
 
         # only insert people that do not have existing accounts
-        if ($email == "") {
+        #if ($email == "") {
 
 
         	                                        
@@ -60,7 +61,7 @@ class users_controller extends base_controller {
             DB::instance(DB_NAME)->insert('users', $_POST);
     
 			print_r("HERE");    
-        }
+        #}
 		
 		
 		
