@@ -43,7 +43,7 @@ class posts_controller extends base_controller {
 	
 	}
 	
-	public function users() {
+	public function users_old() {
 	
 		# Set up the view
 		$this->template->content = View::instance("v_posts_users");
@@ -61,6 +61,37 @@ class posts_controller extends base_controller {
 		echo $this->template;
 	
 	}
+	
+	public function users() {
+
+		# Set up the view
+		$this->template->content = View::instance("v_posts_users");
+
+		# Grab all the users
+		$q = "SELECT * 
+			FROM users";
+
+		$users = DB::instance(DB_NAME)->select_rows($q);
+
+		# Figure out the connections
+		$q = "SELECT * 
+			FROM users_users 
+			WHERE user_id = ".$this->user->user_id;
+
+		$connections = DB::instance(DB_NAME)->select_array($q, 'user_id_followed');
+
+		echo Debug::dump($connections,"connections");
+
+
+		# Pass data to the view
+		$this->template->content->connections = $connections;
+		$this->template->content->users = $users;
+
+		# Render the view
+		echo $this->template;
+
+	}
+
 	
 	
 	public function follow($user_id_followed = NULL) {
@@ -119,8 +150,6 @@ class posts_controller extends base_controller {
 		
 		# retrieve the users that are following you 
 		$stalkers = DB::instance(DB_NAME)->select_rows($q);
-		
-		print_r("IM HERE");
 		
 		print_r($stalkers);
 		

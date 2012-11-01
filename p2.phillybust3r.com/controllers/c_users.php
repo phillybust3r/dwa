@@ -53,6 +53,8 @@ class users_controller extends base_controller {
 
         # only insert people that do not have existing accounts
         if ($email == "") {
+
+
         	                                        
         	# Insert this user into the database 
             DB::instance(DB_NAME)->insert('users', $_POST);
@@ -64,13 +66,17 @@ class users_controller extends base_controller {
 		
 		echo "You're registered! Now go <a href='/'>login</a>";
 		
-	#	Router::redirect("/");
+		
+		
+		#Router::redirect("/");
 	
 		# Load the template
-		#$this->template->content = View::instance("v_users_login");
+		$this->template->content = View::instance("v_users_login");
+	
+		$this->template->content->posts = $_POST;
 		
 		# Render the template
-		#echo $this->template;
+		echo $this->template;
 
 	
 	}
