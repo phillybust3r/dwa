@@ -34,16 +34,19 @@
 		NEW USER:
 
 		<form method='POST' action='/users/p_signup'>
-
-			<input type='text' name='first_name' placeholder = "FIRST NAME">
+		First
+			<input type='text' name='first_name'>
 			<br>
-			<input type='text' name='last_name' placeholder="LAST NAME">
+		Last
+			<input type='text' name='last_name'>
 			<br>
-			<input type='text' name='email' placeholder="EMAIL">
+		Email
+			<input type='text' name='email'>
 			<br>
-			<input type='password' name='password' placeholder="PASSWORD">
+		Password
+			<input type='password' name='password'>
 			<br>
-			<input type='submit' value='Submit'>
+			<input type='Submit'>
 	
 		</form>
 

@@ -32,6 +32,9 @@ class users_controller extends base_controller {
 		print_r($_POST);
 		
 		
+		# Insert this user into the database 
+        DB::instance(DB_NAME)->insert('users', $_POST);
+    		
 		
 		# Encrypt password
 		/*$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
