@@ -28,7 +28,7 @@ class users_controller extends base_controller {
 	public function p_signup() {
 	
 		# What data was submitted
-		#print_r($_POST);
+		print_r($_POST);
 		
 		# Encrypt password
 		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
@@ -64,7 +64,7 @@ class users_controller extends base_controller {
 		
 		echo "You're registered! Now go <a href='/'>login</a>";
 		
-		Router::redirect("/");
+	#	Router::redirect("/");
 	
 		# Load the template
 		#$this->template->content = View::instance("v_users_login");
