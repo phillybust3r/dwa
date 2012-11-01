@@ -32,10 +32,8 @@ A email designated to receive messages from the server. Examples:
 	define('SYSTEM_EMAIL', 'webmaster@myapp.com'); 
 
 # Default DB name for this app
-	define('DB_NAME', "phillybu_p2_phillybust3r_com"); 
+	define('DB', "myapp_com"); 
 
-# Timezone
-	define('TIMEZONE', 'America/New_York');
 
 # If your app is going to have outgoing emails, you should fill in your SMTP settings
 # For this you could use gmail SMTP or something like http://sendgrid.com/
