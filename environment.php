@@ -20,9 +20,9 @@ define('ENABLE_OUTGOING_EMAIL', FALSE);
 define('REMOTE_DB', FALSE);
 
 if (REMOTE_DB) {
-	define('DB_HOST', '');
-	define('DB_USER', '');
-	define('DB_PASS', '');
+	define('DB_HOST', 'localhost');
+	define('DB_USER', 'phillybu_pcb125');
+	define('DB_PASS', 'Bant6474');
 
 } else {
 	define('DB_HOST', ':/Applications/MAMP/tmp/mysql/mysql.sock');
