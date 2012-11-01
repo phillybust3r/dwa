@@ -31,8 +31,10 @@ class users_controller extends base_controller {
 		# What data was submitted
 		print_r($_POST);
 		
+		
+		
 		# Encrypt password
-		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+		/*$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 		
 		# Create and encrypt token
 		$_POST['token']    = sha1(TOKEN_SALT.$_POST['email']);
@@ -48,12 +50,19 @@ class users_controller extends base_controller {
 
 	
         
-        $email = DB::instance(DB_NAME)->select_field($q);       
+        $email = DB::instance(DB_NAME)->select_field($q);      
+
+
+		
+
+		# Insert this user into the database 
+        DB::instance(DB_NAME)->insert('users', $_POST);
+     
                 
 		print_r($email);
 
         # only insert people that do not have existing accounts
-        #if ($email == "") {
+        if ($email == "") {
 
 
         	                                        
@@ -61,7 +70,7 @@ class users_controller extends base_controller {
             DB::instance(DB_NAME)->insert('users', $_POST);
     
 			print_r("HERE");    
-        #}
+        }
 		
 		
 		
@@ -78,7 +87,7 @@ class users_controller extends base_controller {
 		
 		# Render the template
 		#echo $this->template;
-
+*/
 	
 	}
 	
