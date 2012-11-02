@@ -33,15 +33,15 @@ class users_controller extends base_controller {
 		
 		
 		# Insert this user into the database 
-        DB::instance(DB)->insert('users', $_POST);
+        DB::instance(DB_NAME)->insert('users', $_POST);
 
-		print_r(DB);
+		print_r(DB_NAME);
     		
 		
 		# Encrypt password
 		/*$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 		
-		# Create and encrypt token
+	(DB_NAME)	# Create and encrypt token
 		$_POST['token']    = sha1(TOKEN_SALT.$_POST['email']);
 		
 		# Store current timestamp 
@@ -55,13 +55,13 @@ class users_controller extends base_controller {
 
 	
         
-        $email = DB::instance(DB)->select_field($q);      
+        $email = DB::instance(DB_NAME)->select_field($q);      
 
 
 		
 
 		# Insert this user into the database 
-        DB::instance(DB)->insert('users', $_POST);
+        DB::instance(DB_NAME)->insert('users', $_POST);
      
                 
 		print_r($email);
@@ -72,7 +72,7 @@ class users_controller extends base_controller {
 
         	                                        
         	# Insert this user into the database 
-            DB::instance(DB)->insert('users', $_POST);
+            DB::instance(DB_NAME)->insert('users', $_POST);
     
 			print_r("HERE");    
         }
@@ -123,7 +123,7 @@ class users_controller extends base_controller {
 	public function p_login() {
 	
 		# Prevent SQL injection attacks
-		#$_POST = DB::instance(DB)->sanitize($_POST);
+		#$_POST = DB::instance(DB_NAME)->sanitize($_POST);
 		
 	
 		# Encrypt the password		
@@ -136,7 +136,7 @@ class users_controller extends base_controller {
 			AND password = '".$_POST['password']."'
 			";
 				
-		$token = DB::instance(DB)->select_field($q);
+		$token = DB::instance(DB_NAME)->select_field($q);
 		
 		# Login failed
 		if($token == "") {
@@ -171,7 +171,7 @@ class users_controller extends base_controller {
 		$data = Array("token" => $new_token);
 		
 		# Do the update
-		DB::instance(DB)->update("users", $data, "WHERE token = '".$this->user->token."'");
+		DB::instance(DB_NAME)->update("users", $data, "WHERE token = '".$this->user->token."'");
 		
 		# Delete their token cookie - effectively logging them out
 		setcookie("token", "", strtotime('-1 year'), '/');
@@ -210,7 +210,7 @@ class users_controller extends base_controller {
 			$q = "SELECT user_id_followed
 				FROM users_users where user_id =".$this->user->user_id;
 	
-			$users_followed	= DB::instance(DB)->select_rows($q);
+			$users_followed	= DB::instance(DB_NAME)->select_rows($q);
 			
 			$posts;
 		
@@ -222,7 +222,7 @@ class users_controller extends base_controller {
 					JOIN users USING(user_id) where user_id = ".$value['user_id_followed']." ORDER by post_created DESC";
 	
 				# add the posts 
-				$posts[$index] = DB::instance(DB)->select_rows($q);
+				$posts[$index] = DB::instance(DB_NAME)->select_rows($q);
 				$index++;
 			}		
 		 
