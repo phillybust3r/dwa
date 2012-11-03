@@ -141,7 +141,7 @@ class posts_controller extends base_controller {
 	
 	public function add() {
 	
-		# the posts are part of the user
+		# the posts are part of the user profile
 		Router::redirect('/users/profile');	
 	}
 	
@@ -153,6 +153,47 @@ class posts_controller extends base_controller {
 		$post['content'] = $_POST['content'];
 		
 		DB::instance(DB_NAME)->insert('posts', $post);
+		
+		# now split the content by spaces
+		$post_array = split(' ', $_POST['content']);
+
+		print_r($post_array);
+
+		foreach( $post_array as $key => $value){
+			
+			# now check if there is a #hashtag
+			if ($value[0] == '#') {
+			
+				$hashtag['count'] = 1;
+				$hashtag['hashtag'] = $value;
+			
+				# look for the hashtag in the database
+				$q = "SELECT hashtag_id, count 
+					FROM hashtags 
+					WHERE hashtag = '".$value."'";
+										
+				$hashtag_found = DB::instance(DB_NAME)->select_row($q);
+				
+				if (!$hashtag_found) {
+					
+					#insert the hashtag into the database
+					DB::instance(DB_NAME)->insert('hashtags', $hashtag);
+				}
+				else {
+				
+					# update the count	
+					$count['count'] = $hashtag_found['count'] + 1;
+					
+					$where_condition = "WHERE hashtag_id =".$hashtag_found['hashtag_id'];
+					
+					DB::instance(DB_NAME)->update('hashtags', $count, $where_condition);
+
+					
+				}
+			}
+			
+		}
+		
 		
 		# the posts are part of the profile, so redirect there
 		Router::redirect("/users/profile");

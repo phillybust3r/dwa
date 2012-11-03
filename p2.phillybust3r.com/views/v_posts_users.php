@@ -3,9 +3,12 @@
 <link rel="stylesheet" href="../css/postusers.css" type="text/css"/> 
 
 
+<h1>Blabbrmouths</h1>
+
+<body>
 <? foreach($users as $key => $user): ?>
 
-	<div id='postwrapper'>
+	<div id='postwrapper2'>
 
 	<?=$user['first_name']?> <?=$user['last_name']?>
 	
@@ -26,3 +29,4 @@
 	</div>
 	
 <? endforeach; ?>
+</body>
