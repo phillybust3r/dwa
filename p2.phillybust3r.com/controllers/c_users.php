@@ -34,7 +34,7 @@ class users_controller extends base_controller {
 	public function p_signup() {
 	
 		# What data was submitted
-		print_r($_POST);
+		#print_r($_POST);
 		
 		# Search the db for this email
         $q = "SELECT email 
@@ -62,7 +62,7 @@ class users_controller extends base_controller {
 			}
 			else {
 			
-			
+				$this->message = "Username taken. Please choose another one.";
 			}
 			
 
@@ -70,7 +70,13 @@ class users_controller extends base_controller {
 		}
 		else {
 		
-			print_r("OLD_EMAIL");
+			#echo "OLD_EMAIL";
+			
+			$this->message = "User account exists. Please login.";
+
+			
+			Router::redirect("/users/login");
+
 		
 		}
 		
@@ -101,8 +107,13 @@ class users_controller extends base_controller {
 		# Load the template
 		$this->template->content = View::instance("v_users_login");
 		
+		$this->template->message = $this->message;
+		
 		# Render the template
 		echo $this->template;
+		
+		# clear out the message
+		$this->message = '';
 		
 	}
 	
@@ -175,6 +186,9 @@ class users_controller extends base_controller {
 			echo "Members only. <a href='/users/login/'>Please login.</a>";
 			return;
 		}
+		
+		# retrieve the user name
+		$user_name = $this->user->first_name;
 						
 		# Logged in	
 		if($user_name == NULL) {
@@ -186,6 +200,17 @@ class users_controller extends base_controller {
 				$this->template->title   = "Profile for ".$user_name;
 						
 			# Don't need to pass any variables to the view because all we need is $user and that's already set globally in c_base.php
+			
+			
+			
+			# retrieve all the posts you made
+			$q = "SELECT *
+					FROM posts where user_id = ".$this->user->user_id." ORDER by post_created DESC";
+			
+			$posts = DB::instance(DB_NAME)->select_rows($q);
+		 
+			# Pass data to the view
+			$this->template->content->posts = $posts;		
 							
 			# Render the view
 				echo $this->template;

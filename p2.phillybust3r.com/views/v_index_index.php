@@ -4,7 +4,6 @@
 <body>
 
 <? if(!$user): ?>
-	<br><br><br>
 
 	<font size="1" face="arial, helvetica, sans-serif"> 
 		

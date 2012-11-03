@@ -10,6 +10,8 @@
 	
 		<div class='column' id='right'>
 
+		<div id='wrapper'>
+
 		<form method='POST' action='/users/p_login'>
 			<input type='text' name='email' placeholder ='EMAIL'>	
 			<br>
@@ -18,9 +20,11 @@
 			<input type='Submit' value='LOGIN'>
 
 		</form>
-
+		</div>
 		</div>
 	</font>
+	
+	
 </body>
 
 

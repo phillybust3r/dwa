@@ -13,7 +13,7 @@ class posts_controller extends base_controller {
 	}
 		
 	public function index() {
-	
+		
 		# Set up the view
 		$this->template->content = View::instance("v_posts_index");
 		$this->template->title   = "All the posts";
@@ -24,12 +24,13 @@ class posts_controller extends base_controller {
 			WHERE user_id = ".$this->user->user_id;
 				
 		$connections = DB::instance(DB_NAME)->select_rows($q);
-		
+				
 		$connections_string = "";
 		
 		foreach($connections as $k => $v) {
 			$connections_string .= $v['user_id_followed'].",";
 		}
+						
 		
 		# Trim off the last comma
 			$connections_string = substr($connections_string, 0, -1);
@@ -41,6 +42,7 @@ class posts_controller extends base_controller {
 			WHERE posts.user_id IN (".$connections_string.")";
 					
 		$posts = DB::instance(DB_NAME)->select_rows($q);
+		
 		 
 		# Pass data to the view
 		$this->template->content->posts = $posts;
@@ -99,7 +101,7 @@ class posts_controller extends base_controller {
 		
 		$connections = DB::instance(DB_NAME)->select_array($q, 'user_id_followed');
 		
-		echo Debug::dump($connections,"connections");
+		#echo Debug::dump($connections,"connections");
 		
 	
 		# Pass data to the view
@@ -139,27 +141,22 @@ class posts_controller extends base_controller {
 	
 	public function add() {
 	
-		# Set up the view
-		$this->template->content = View::instance("v_posts_add");
-		$this->template->title = "Add a new post";
-		
-		# Render the view
-		echo $this->template;
-	
+		# the posts are part of the user
+		Router::redirect('/users/profile');	
 	}
 	
 	public function p_add() {
-	
-		//print_r($_POST);
 		
-		$_POST['created']  = Time::now();
-		$_POST['modified'] = Time::now();
-		$_POST['user_id']  = $this->user->user_id;
+		$post['post_created']  = Time::now();
+		$post['modified'] = Time::now();
+		$post['user_id']  = $this->user->user_id;
+		$post['content'] = $_POST['content'];
 		
-		DB::instance(DB_NAME)->insert('posts', $_POST);
+		DB::instance(DB_NAME)->insert('posts', $post);
 		
-		echo "Your post has been added. <a href='/posts/add'>Add another</a>";
-	
+		# the posts are part of the profile, so redirect there
+		Router::redirect("/users/profile");
+		
 	}
 
 

@@ -3,6 +3,10 @@
 <script type="text/javascript" src="../TacoComponents/MenuMatic/MenuMatic.js"></script>
 <link rel="stylesheet" type="text/css" href="../TacoComponents/MenuMatic/MenuMatic_myNavigationMenu_2.css" />
 
+<br>
+<br>
+<br>
+
 <!-- End HEAD content -->
 <!-- BEGIN COMPONENT Navigation Menu - Taco HTML Edit -->
 <!--  
@@ -13,15 +17,15 @@ doctype declaration at the beginning of your document such as:
 <ul id="myNavigationMenu">
 	<li><a href="/index">Home</a>
 	</li>
-	<li><a href="/posts/connections">@ Stalkrs</a>
+	<li><a href="/posts/">@ Stalkrs</a>
 	</li>
 	<li><a href="/posts/users"># Blabbrmouths</a>
-	</li>
-	<li><a href="/posts">Me</a>
 	</li>
 	<li><a href="/users/logout">Logout</a>
 	</li>
 </ul>
+
+
 
 <!-- Create a MenuMatic Instance -->
 <script type="text/javascript" >
@@ -36,5 +40,10 @@ doctype declaration at the beginning of your document such as:
 			opacity: 100});
 	});		
 </script>
+
+<br>
+<br>
+<br>
+<br>
 
 <!-- END COMPONENT Navigation Menu - Taco HTML Edit -->

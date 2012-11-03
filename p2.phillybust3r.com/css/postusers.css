@@ -1,13 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+	<head>
+		<title></title>
+	</head>
+	<body>
+
+
+	</body>
 /**
 My styles
 **/	
 		h1 {
-			text-align:center;
+			text-align:left;
 			text-decoration:none;
 		}
 	
 		body { 
-			background: url("../images/background.png");
+			background: url("/images/background.png");
 			max-width: 950px;
 			margin: 0 auto;
 			
@@ -30,14 +40,33 @@ My styles
 			clear:both;
 		}
 		
-		#wrapper {
+		#postwrapper {
 			float: left;
 			clear: right;
 					
 			border:1px solid black;
-			width:200px;
-			margin:20px;
+			width:800px;
+			margin:5px;
 			background-image:url('/images/paper-tile.png');
+
+
+			-webkit-border-radius: 12px;
+			border-radius: 12px;
+			-moz-background-clip: padding; 
+			-webkit-background-clip:padding-box; 
+			background-clip: padding-box;
+			padding:30px;
+		}
+		
+		#postwrapper2 {
+			float: left;
+			clear: right;
+					
+			border:1px solid black;
+			width:800px;
+			margin:5px;
+			
+			background: white;
 
 
 			-webkit-border-radius: 12px;

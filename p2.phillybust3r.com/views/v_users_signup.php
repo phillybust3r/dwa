@@ -2,6 +2,8 @@
 
 <body>
 		
+		
+		
 	<font size="1" face="arial, helvetica, sans-serif"> 
 		
 		<div class='column' id='left'>
@@ -9,6 +11,8 @@
 		</div>
 	
 		<div class='column' id='right'>
+
+		<div id='wrapper'>
 
 		<form method='POST' action='/users/p_signup'>
 	
@@ -24,7 +28,7 @@
 			<br>
 			<input type='Submit' value='NEW USER'>
 		</form>
-
+		</div>
 		</div>
 	</font>
 </body>
