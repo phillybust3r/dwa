@@ -33,6 +33,7 @@ class users_controller extends base_controller {
 	-------------------------------------------------------------------------------------------------*/
 	public function p_signup() {
 	
+		print_r($_POST);
 		
 		# Search the db for this email
         $q = "SELECT email 
