@@ -183,6 +183,7 @@ class users_controller extends base_controller {
 			echo "Members only. <a href='/users/login/'>Please login.</a>";
 			return;
 		}
+		print_r("USER NAME");
 		
 		# retrieve the user name
 		$user_name = $this->user->first_name;
