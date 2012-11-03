@@ -33,8 +33,6 @@ class users_controller extends base_controller {
 	-------------------------------------------------------------------------------------------------*/
 	public function p_signup() {
 	
-		# What data was submitted
-		#print_r($_POST);
 		
 		# Search the db for this email
         $q = "SELECT email 
@@ -46,10 +44,7 @@ class users_controller extends base_controller {
 
 		# if no email was found, then this is a new account
 		if (!$email) {
-			print_r("NEW EMAIL");
-			
-			# now check if the username is new as well
-			
+						
 			# Search the db for this username
         	$q = "SELECT username 
             	  FROM users 
@@ -57,12 +52,21 @@ class users_controller extends base_controller {
 	
         
         	$username = DB::instance(DB_NAME)->select_field($q);      
-			if (username) {
-				echo "USERNAME TAKEN";
-			}
-			else {
-			
-				$this->message = "Username taken. Please choose another one.";
+			if (!$username) {
+				
+				# Encrypt password
+				$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+		
+				# Create and encrypt token
+				$_POST['token']    = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+		
+				# Store current timestamp 
+				$_POST['created']  = Time::now(); # This returns the current timestamp
+				$_POST['modified'] = Time::now();
+		
+				# Insert 
+				DB::instance(DB_NAME)->insert('users', $_POST);
+	
 			}
 			
 
@@ -70,32 +74,13 @@ class users_controller extends base_controller {
 		}
 		else {
 		
-			#echo "OLD_EMAIL";
-			
-			$this->message = "User account exists. Please login.";
-
-			
 			Router::redirect("/users/login");
-
 		
 		}
 		
-		/*
-		# Encrypt password
-		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 		
-		# Create and encrypt token
-		$_POST['token']    = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
 		
-		# Store current timestamp 
-		$_POST['created']  = Time::now(); # This returns the current timestamp
-		$_POST['modified'] = Time::now();
 		
-		# Insert 
-		DB::instance(DB_NAME)->insert('users', $_POST);
-		
-		echo "You're registered! Now go <a href='/users/login'>login</a>";
-		*/
 	}
 	
 	
@@ -172,6 +157,13 @@ class users_controller extends base_controller {
 		setcookie("token", "", strtotime('-1 year'), '/');
 		
 		echo "You have been logged out.";
+		# Setup the view
+			$this->template->content = View::instance("v_logout");
+			$this->template->title   = "Logout";
+			
+		# Render the view
+			echo $this->template;
+
 
 	}
 
@@ -200,18 +192,25 @@ class users_controller extends base_controller {
 				$this->template->title   = "Profile for ".$user_name;
 						
 			# Don't need to pass any variables to the view because all we need is $user and that's already set globally in c_base.php
-			
-			
-			
+						
 			# retrieve all the posts you made
 			$q = "SELECT *
 					FROM posts where user_id = ".$this->user->user_id." ORDER by post_created DESC";
 			
 			$posts = DB::instance(DB_NAME)->select_rows($q);
-		 
+			
 			# Pass data to the view
 			$this->template->content->posts = $posts;		
-							
+			
+			# retrieve all the trends
+			$q = "SELECT hashtag
+					FROM hashtags ORDER by count DESC";
+								
+			$trends = DB::instance(DB_NAME)->select_rows($q);
+			
+			# pass data to the view
+			$this->template->content->trends = $trends;		
+		 							
 			# Render the view
 				echo $this->template;
 

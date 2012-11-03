@@ -21,6 +21,8 @@ doctype declaration at the beginning of your document such as:
 	</li>
 	<li><a href="/posts/users"># Blabbrmouths</a>
 	</li>
+	<li><a href="/posts/trends">Trends</a>
+	</li>
 	<li><a href="/users/logout">Logout</a>
 	</li>
 </ul>

@@ -35,7 +35,7 @@ My styles
 			clear: right;
 					
 			border:1px solid black;
-			width:800px;
+			width:877px;
 			margin:5px;
 			background-image:url('/images/paper-tile.png');
 
@@ -49,14 +49,35 @@ My styles
 		}
 		
 		#postwrapper2 {
-			float: left;
+			float: right;
 			clear: right;
 					
 			border:1px solid black;
-			width:800px;
+			width:400px;
 			margin:5px;
 			
 			background: white;
+
+
+			-webkit-border-radius: 12px;
+			border-radius: 12px;
+			-moz-background-clip: padding; 
+			-webkit-background-clip:padding-box; 
+			background-clip: padding-box;
+			padding:40px;
+		}
+		
+		#trends {
+			float: left;
+			clear: right;
+			font:15px arial,sans-serif;
+
+					
+			border:1px solid black;
+			width:370px;
+			margin:5px;
+			
+			background: pink;
 
 
 			-webkit-border-radius: 12px;
@@ -68,7 +89,7 @@ My styles
 		}
 		
 		#right{
-			margin: 15px;
+			margin: 10px;
 			padding: 25px;
 			float: left;
 			clear: right;

@@ -24,6 +24,8 @@ class posts_controller extends base_controller {
 			WHERE user_id = ".$this->user->user_id;
 				
 		$connections = DB::instance(DB_NAME)->select_rows($q);
+		
+		if ($connections) {
 				
 		$connections_string = "";
 		
@@ -43,9 +45,12 @@ class posts_controller extends base_controller {
 					
 		$posts = DB::instance(DB_NAME)->select_rows($q);
 		
+		
 		 
 		# Pass data to the view
 		$this->template->content->posts = $posts;
+		}
+		
 			
 		# Render the view
 		echo $this->template;
@@ -71,6 +76,7 @@ class posts_controller extends base_controller {
 				LEFT JOIN users_users
 					ON users.user_id = users_users.user_id_followed
 				WHERE users_users.user_id = ".$this->user->user_id;
+				
 								
 		$posts = DB::instance(DB_NAME)->select_rows($q);
 		 
@@ -88,9 +94,10 @@ class posts_controller extends base_controller {
 		# Set up the view
 		$this->template->content = View::instance("v_posts_users");
 		
+		
 		# Grab all the users
 		$q = "SELECT * 
-			FROM users";
+			FROM users WHERE email <> '".$this->user->email."'";
 		
 		$users = DB::instance(DB_NAME)->select_rows($q);
 		
@@ -154,25 +161,29 @@ class posts_controller extends base_controller {
 		
 		DB::instance(DB_NAME)->insert('posts', $post);
 		
+		
+		
 		# now split the content by spaces
 		$post_array = split(' ', $_POST['content']);
-
-		print_r($post_array);
 
 		foreach( $post_array as $key => $value){
 			
 			# now check if there is a #hashtag
 			if ($value[0] == '#') {
 			
+				# remove the leading # (this is assuming hashtags only have 1 #
+				$hashtag_val = substr($value, 1);
+			
 				$hashtag['count'] = 1;
-				$hashtag['hashtag'] = $value;
+				$hashtag['hashtag'] = $hashtag_val;
 			
 				# look for the hashtag in the database
 				$q = "SELECT hashtag_id, count 
 					FROM hashtags 
-					WHERE hashtag = '".$value."'";
+					WHERE hashtag = '".$hashtag_val."'";
 										
 				$hashtag_found = DB::instance(DB_NAME)->select_row($q);
+				
 				
 				if (!$hashtag_found) {
 					
@@ -190,6 +201,21 @@ class posts_controller extends base_controller {
 
 					
 				}
+				
+				#retrieve the post we just saved - we need the post_id to associate
+				# it with the trends
+				$q = "SELECT post_id 
+					FROM posts 
+					WHERE post_created = ".$post['post_created']." AND user_id = ".$post['user_id'];
+				$post_id = DB::instance(DB_NAME)->select_row($q);
+				
+				$trend_post['post_id'] = $post_id['post_id'];
+				$trend_post['hashtag'] = $hashtag_val;
+				
+				
+				#insert the trend post into the database
+				DB::instance(DB_NAME)->insert('trends_post', $trend_post);
+
 			}
 			
 		}
@@ -199,6 +225,43 @@ class posts_controller extends base_controller {
 		Router::redirect("/users/profile");
 		
 	}
+	
+	public function p_trends($hashtag = NULL) {
+				
+		# retrieve the posts with the hashtag
+		$q = "SELECT * FROM trends_post WHERE hashtag = '".$hashtag."'";
+						
+		$hashtags = DB::instance(DB_NAME)->select_rows($q);
+	
+	}
+	
+	public function trends($hashtag = NULL) {
+	
+		if (!$hashtag) {
+	
+	  		# the trends are part of the profile, so redirect there
+			Router::redirect("/users/profile");
+		}
+		else {
+			# retrieve the posts with the hashtag
+			$q = "SELECT * FROM trends_post WHERE hashtag = '".$hashtag."'";
+						
+			$hashtags = DB::instance(DB_NAME)->select_rows($q);
+			print_r($hashtags);
+			
+			# Set up the view
+			$this->template->content = View::instance("v_trends");
+			$this->template->content->hashtags = $hashtags;
+		
+			# Render the view
+			echo $this->template;
+	
+		
+		}
+
+	
+	}
+
 
 
 

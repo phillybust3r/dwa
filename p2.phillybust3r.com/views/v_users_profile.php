@@ -17,7 +17,9 @@ count.value = max - field.value.length;
 
 <body>
 <br>
-<h1><?=$user->first_name?></h1>
+<h1><?=$user->first_name?> <?=$user->last_name?></h1>
+<h2>@<?=$user->username?></h2>
+
 
 
 <div id='postwrapper'>
@@ -37,15 +39,24 @@ count.value = max - field.value.length;
 
 </div>
 
+<div id='trends'>
+
+<img src='/images/trends.png' alt='TRENDS'><br>
+		
+<br>
+
+<?php for ($i = 0; $i <= 10 && $trends[$i]; $i++): ?>
+	<a href='/posts/p_trends/<?=$trends[$i]['hashtag']?>'>#<?=$trends[$i]['hashtag']?></a>		
+	<br>
+<? endfor; ?>
+
+</div>
+
 
 
 <?php foreach($posts as $key => $post): ?>
 <div id='postwrapper2'>
-
 	<?=$post['content']?>
-	<!-- this is the user post -->
-	<!--?=$user_post['content'] ?-->	
-
 </div>
 	
 <? endforeach; ?>

@@ -8,7 +8,7 @@
 	<font size="1" face="arial, helvetica, sans-serif"> 
 		
 		<div class='column' id='left'>
-		<img src='/images/blabbrlogo.png' alt='Blabbr'><br>
+			<a href="/"><img border="0" src="/images/blabbrlogo.png" alt="Blabbr" ></a>	
 		</div>
 	
 		<div class='column' id='right'>
