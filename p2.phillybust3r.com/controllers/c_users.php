@@ -36,7 +36,7 @@ class users_controller extends base_controller {
 		print_r($_POST);
 		
 		#check if all of $_POST was filled out
-		if ($_POST
+		
 		
 		# Search the db for this email
         $q = "SELECT email 
