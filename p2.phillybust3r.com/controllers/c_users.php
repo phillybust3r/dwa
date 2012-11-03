@@ -35,6 +35,9 @@ class users_controller extends base_controller {
 	
 		print_r($_POST);
 		
+		#check if all of $_POST was filled out
+		if ($_POST
+		
 		# Search the db for this email
         $q = "SELECT email 
               FROM users 
@@ -126,6 +129,7 @@ class users_controller extends base_controller {
 		
 		# Login failed
 		if($token == "") {
+			print_r("LOGIN FAIL");
 			Router::redirect("/users/login");
 		}
 		# Login passwed
@@ -187,6 +191,8 @@ class users_controller extends base_controller {
 		if($user_name == NULL) {
 			echo "You did not specify a user";
 		} else {
+		
+			echo "USER PROFILE";
 		
 			# Setup the view
 				$this->template->content = View::instance("v_users_profile");
