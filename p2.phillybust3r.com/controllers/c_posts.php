@@ -17,30 +17,19 @@ class posts_controller extends base_controller {
 		# Set up the view
 		$this->template->content = View::instance("v_posts_index");
 		$this->template->title   = "All the posts";
-		
-		echo "HERE";
-	
+			
 		# Figure out the connections
 		$q = "SELECT *
 			FROM users_users
 			WHERE user_id = ".$this->user->user_id;
 			
 		$connections = DB::instance(DB_NAME)->select_rows($q);
-		
-		echo "HERE 2";
-		
-		print_r($connections);
-		
-		
-				
+						
 		$connections_string = "";
 		
 		foreach($connections as $k => $v) {
 			$connections_string .= $v['user_id_followed'].",";
-		}
-		
-		echo "HERE 3";
-						
+		}				
 		
 		# Trim off the last comma
 			$connections_string = substr($connections_string, 0, -1);
@@ -52,13 +41,7 @@ class posts_controller extends base_controller {
 			WHERE posts.user_id IN (".$connections_string.")";
 					
 		$posts = DB::instance(DB_NAME)->select_rows($q);
-		
-		echo $post;
-		
-		echo "HERE 4";
-		
-		print_r($posts);
-		 
+				 
 		# Pass data to the view
 		$this->template->content->posts = $posts;
 		
