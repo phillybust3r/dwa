@@ -117,7 +117,6 @@ class users_controller extends base_controller {
 		
 		# Login failed
 		if($token == "") {
-			print_r("LOGIN FAIL");
 			Router::redirect("/users/login");
 		}
 		# Login passwed
