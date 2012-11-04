@@ -183,8 +183,7 @@ class users_controller extends base_controller {
 			echo "Members only. <a href='/users/login/'>Please login.</a>";
 			return;
 		}
-		print_r("USER NAME");
-		
+				
 		# retrieve the user name
 		$user_name = $this->user->first_name;
 						
@@ -192,8 +191,6 @@ class users_controller extends base_controller {
 		if($user_name == NULL) {
 			echo "You did not specify a user";
 		} else {
-		
-			echo "USER PROFILE";
 		
 			# Setup the view
 				$this->template->content = View::instance("v_users_profile");
