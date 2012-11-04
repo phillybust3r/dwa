@@ -154,9 +154,7 @@ class posts_controller extends base_controller {
 		$post['content'] = $_POST['content'];
 		
 		DB::instance(DB_NAME)->insert('posts', $post);
-		
-		echo "HERE";
-		
+				
 		# now split the content by spaces
 		$post_array = split(' ', $_POST['content']);
 
@@ -171,29 +169,21 @@ class posts_controller extends base_controller {
 		
 				$hashtag['count'] = 1;
 				$hashtag['hashtag'] = $hashtag_val;
-	
-		echo "HERE 1";
-			
+		
 				# look for the hashtag in the database
 				$q = "SELECT hashtag_id, count 
 					FROM hashtags 
 					WHERE hashtag = '".$hashtag_val."'";
 										
 				$hashtag_found = DB::instance(DB_NAME)->select_row($q);
-		
-		echo "HERE 2";		
-				
+					
 				if (!$hashtag_found) {
-				
-					echo $hashtag;
 						
 					#insert the hashtag into the database
 					DB::instance(DB_NAME)->insert('hashtags', $hashtag);
 				}
 				else {
-				
-			echo "HERE 3";
-				
+						
 					# update the count	
 					$count['count'] = $hashtag_found['count'] + 1;
 					
@@ -201,10 +191,7 @@ class posts_controller extends base_controller {
 					
 					DB::instance(DB_NAME)->update('hashtags', $count, $where_condition);
 
-				echo "HERE 4";		
 				}
-				
-					echo "HERE 5";
 				
 				#retrieve the post we just saved - we need the post_id to associate
 				# it with the trends
@@ -220,7 +207,6 @@ class posts_controller extends base_controller {
 				
 				#insert the trend post into the database
 				DB::instance(DB_NAME)->insert('trends_post', $trend_post);
-	echo "HERE 6";
 			}
 			
 		}
