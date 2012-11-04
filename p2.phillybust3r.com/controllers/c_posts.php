@@ -168,6 +168,7 @@ class posts_controller extends base_controller {
 				# remove the leading # (this is assuming hashtags only have 1 #
 				$hashtag_val = substr($value, 1);
 			
+		
 				$hashtag['count'] = 1;
 				$hashtag['hashtag'] = $hashtag_val;
 	
@@ -183,7 +184,9 @@ class posts_controller extends base_controller {
 		echo "HERE 2";		
 				
 				if (!$hashtag_found) {
-					
+				
+					echo $hashtag;
+						
 					#insert the hashtag into the database
 					DB::instance(DB_NAME)->insert('hashtags', $hashtag);
 				}
