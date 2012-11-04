@@ -29,7 +29,9 @@ class posts_controller extends base_controller {
 		
 		echo "HERE 2";
 		
-		if ($connections) {
+		print_r($connections);
+		
+		
 				
 		$connections_string = "";
 		
@@ -51,14 +53,14 @@ class posts_controller extends base_controller {
 					
 		$posts = DB::instance(DB_NAME)->select_rows($q);
 		
+		echo $post;
 		
-		echo "HERE 4"
-		;
+		echo "HERE 4";
+		
 		print_r($posts);
 		 
 		# Pass data to the view
 		$this->template->content->posts = $posts;
-		}
 		
 			
 		# Render the view
