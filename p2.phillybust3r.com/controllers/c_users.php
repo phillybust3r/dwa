@@ -161,7 +161,7 @@ class users_controller extends base_controller {
 		# Delete their token cookie - effectively logging them out
 		setcookie("token", "", strtotime('-1 year'), '/');
 		
-		echo "You have been logged out.";
+		#echo "You have been logged out.";
 		# Setup the view
 			$this->template->content = View::instance("v_logout");
 			$this->template->title   = "Logout";
