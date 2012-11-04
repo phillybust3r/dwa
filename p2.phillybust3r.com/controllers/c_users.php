@@ -32,10 +32,6 @@ class users_controller extends base_controller {
 	
 	-------------------------------------------------------------------------------------------------*/
 	public function p_signup() {
-	
-		print_r($_POST);
-		
-		#check if all of $_POST was filled out
 		
 		
 		# Search the db for this email
@@ -72,19 +68,11 @@ class users_controller extends base_controller {
 				DB::instance(DB_NAME)->insert('users', $_POST);
 	
 			}
+							
+		}
 			
-
-						
-		}
-		else {
-		
-			Router::redirect("/users/login");
-		
-		}
-		
-		
-		
-		
+		Router::redirect("/users/login");
+	
 	}
 	
 	
