@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>Hangman</title>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="/js/Hangman.js"></script>
+	
+	<link rel="stylesheet" href="/css/hangman.css" type="text/css">
+	
+	<script type='text/javascript'>
+		$(document).ready(function() {
+	
+			// Initiate our game
+			Hangman.set_board("board", "scoreboard", 10);		
+
+		});		
+	</script>
+
+
+</head>
+
+
+<body>
+
+	Points: <div id='scoreboard'>0</div>
+
+	<div id='board'></div>
+	
+	<br><br>
+
+	<div style='clear:both'></div>
+	
+	<br><br>
+	
+	A basic memory game using a class based approach (see: Memory.js below)<br>
+	<a href='http://net.tutsplus.com/tutorials/javascript-ajax/the-basics-of-object-oriented-javascript/'>More about OOP and JS</a>
+	
+	<br><br>
+
+	<script src="https://gist.github.com/4071584.js"> </script>
+			
+</body>
+
+</html>

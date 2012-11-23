@@ -37,6 +37,7 @@ class javascript_controller extends base_controller {
 	-------------------------------------------------------------------------------------------------*/
 	public function cardgenerator() {
 	
+	
 		# Set up the view
 		$this->template->content = View::instance("v_javascript_cardgenerator");
 		
@@ -54,17 +55,38 @@ class javascript_controller extends base_controller {
 
 	
 	}
-
-
-	public function hangman() {
+	
+	public function cardgenerator2() {
+	
 	
 		# Set up the view
-		$this->template->content = View::instance("v_javascript_hangman");
+		$this->template->content = View::instance("v_javascript_cardgenerator");
 		
 		# Specify what JS/CSS files we need to load in the view
 		$client_files = Array(
-			"/css/hangman.css",
-			"/js/hangman.js",
+			"/css/cardgenerator.css",
+			"/js/cardgenerator.js",
+			);
+			
+		# Load the above specified files
+		$this->template->client_files = Utils::load_client_files($client_files);
+		
+		# Render the view
+		echo $this->template;
+
+	
+	}
+	
+	
+	public function hangman() {
+	
+		# Set up the view
+		$this->template->content = View::instance("v_javascript_cardgenerator");
+		
+		# Specify what JS/CSS files we need to load in the view
+		$client_files = Array(
+			"/css/cardgenerator.css",
+			"/js/cardgenerator.js",
 			);
 			
 		# Load the above specified files
