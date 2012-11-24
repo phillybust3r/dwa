@@ -15,15 +15,32 @@
 	text-align:center;
 }
 
-.tile{
+.word {
+
+	cursor:pointer;
+	width:100px;
+	font-size:25px;
+	height:100px;
+	color:#ED156C;
+	float:left;
+	padding-top:2px;
+	margin-right:2px;
+	text-align:center;
+}
+
+.tile {
+	
+	
 	cursor:pointer;
 	width:40px;
 	font-size:25px;
 	height:40px;
+	color:#ED156C;
 	float:left;
-	padding-top:5px;
+	padding-top:15px;
 	margin-right:10px;
 	text-align:center;
+
 }
 
 .flipped {
@@ -44,7 +61,7 @@
 			margin:5px;
 			
 			background: white;
-
+			background-image:url('/images/paper-tile.png');
 
 			-webkit-border-radius: 12px;
 			border-radius: 12px;
@@ -52,5 +69,5 @@
 			-webkit-background-clip:padding-box; 
 			background-clip: padding-box;
 			padding:30px;
-		}
+}
 		

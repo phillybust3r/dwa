@@ -54,11 +54,9 @@ var Memory = {
 			}
 			
 			// Add the card to the array
-			cardsArr[i] = "<div class='ATile clickable' id='card" + i + "'>" + random_letter + "</div>";
+			cardsArr[i] = "<div class='tile clickable' id='card" + i + "'>" + random_letter + "</div>";
 			
 		}
-		
-		var tileArray = "<div class='ATile clickable' id='tile1'>V</div>";
 		
 		// Shuffle the deck / array
 		cardsArr = this.shuffle(cardsArr);
@@ -103,6 +101,8 @@ var Memory = {
 		var other_card    = $('.flipped').html();
 		var selected_card = cardObj.html();
 		
+		console.log(cardObj);
+		
 		// Flip the card and remove the clickable class so it can't be clicked again
 		cardObj.addClass('flipped');
 		cardObj.removeClass('clickable');
@@ -131,7 +131,6 @@ var Memory = {
 	
 	
 }; // eoc
-
 
 
 

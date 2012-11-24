@@ -5,9 +5,9 @@
 * @constructor set_board
 *
 * Usage:
-* 	Create two divs, one with id "board", one with id "scoreboard"
+* 	Create two divs, one with id "board", one with id "miss"
 * 	Initiate game, specifying how many cards you want to play with:
-* 	Memory.set_board("board", "scoreboard", 10);
+* 	Memory.set_board("board", "miss", 10);
 * 
 * 
 */
@@ -15,11 +15,11 @@
 var Hangman = {
 	
 	// {int} Keep a running total of points
-	points: 0,
+	misses: 0,
 	
 	// {Object} HTML Objects
 	board: '',
-	scoreboard: '',
+	miss: '',
 	
 	// {array} To label the cards with
 	alphabet: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
@@ -31,37 +31,39 @@ var Hangman = {
 	
 	word_index: '',
 	
-	word_to_guess: [],
+	word: '',
+	
+	
+	word_to_guess: '',
+	
+	// this is the array for the tiles
+	tileArr: [],
+	
+	// this keeps track of the number of matches
+	number_of_matches: 0,
+	
 		
 	/*-------------------------------------------------------------------------------------------------
 	@param {string} id_of_board
-	@param {string} id_of_scoreboard
+	@param {string} id_of_miss
 	@param {int}    how_many_cards
 	@return void
 	-------------------------------------------------------------------------------------------------*/
-	set_board: function(id_of_board, id_of_scoreboard, how_many_cards) {
+	set_board: function(id_of_board, id_of_miss, id_of_word, how_many_cards) {
 			
-		// First, identify the board and the scoreboard objects
+		// First, identify the board and the miss objects
 		this.board      = $('#' + id_of_board);
-		this.scoreboard = $('#' + id_of_scoreboard);
+		this.miss = $('#' + id_of_miss);
+		this.word =  $('#' + id_of_word);
 
-		// This will hold all the cards as we load them, so we can easily shuffle them
-		var cardsArr = [];
-	
-		// This will hold the HTML string of divs that are our cards
-		var cardsStr = String();
-		
-		
 		var tilesStr = String();
 		
-		this.word_index = 0;
+		this.setup_word();
 		
 		
-		this.word_to_guess = this.words[this.word_index];
-		
-		
-		console.log(this.word_to_guess);
-		
+		// create the tiles for the word to be guessed
+		//for (var i = 0; i < 	
+				
 		// Loop for how many cards we're playing with
 	/*	for(var i = 0; i < how_many_cards; i++) {
 			
@@ -76,20 +78,17 @@ var Hangman = {
 		}
 	*/	
 	
-		var tileArr = [];
 	
 		for (var i = 0; i < (this.alphabet).length; i++) {
 		
-		
-			tileArr[i] = "<div class='tile clickable' id='tile" + this.alphabet[i] + "'>" + "<img src='/images/" + this.alphabet[i] + ".png'" + "height='40' width='40'" + "/>" + "</div>";
+			this.tileArr[i] = "<div class='tile clickable' id='tile" + this.alphabet[i] + "'>" + "<img src='/images/" + this.alphabet[i] + ".png'" + " alt='" + this.alphabet[i] + "' height='40' width='40'" + "/>" + "</div>";
 			
 			if (i == 12) {
-				tileArr[i] = tileArr[i] + "<br><br><br>";
+				this.tileArr[i] = this.tileArr[i] + "<br><br><br>";
 			}
 			
-			console.log(tileArr[i]);
-		
-
+			console.log(this.tileArr[i]);
+	
 		}
 		
 			
@@ -106,8 +105,8 @@ var Hangman = {
 	
 		tilesStr = "<div id='alphabetwrapper'>";
 	
-		for(var tile in tileArr) {
-			tilesStr = tilesStr + tileArr[tile];
+		for(var tile in this.tileArr) {
+			tilesStr = tilesStr + this.tileArr[tile];
 		}
 		
 		tilesStr = tilesStr + "</div>";
@@ -132,7 +131,49 @@ var Hangman = {
 	-------------------------------------------------------------------------------------------------*/
 	choose_a_card: function(cardObj) {
 	
-		console.log(this.words[1]);
+		//$('#alphabetwrapper, .tile').css('background-color', 'red');
+	
+		var cardObjStr = cardObj.html();
+		
+		// console.log(cardObj.html());	
+		
+		console.log(cardObj);
+		
+		// the letter selected is at position 30		
+		var letter_clicked = cardObjStr[30];
+		
+		console.log("LETTER: " + letter_clicked);
+		
+		var found = false;
+		
+		// find match
+		for (var i = 0; i <	this.word_to_guess.length; i++) {
+			console.log(this.word_to_guess[i]);
+			if (letter_clicked == this.word_to_guess[i]) {
+				
+				this.update_word(letter_clicked);
+				found = true;
+			}
+			
+				
+		}
+		
+		// Flip the card and remove the clickable class so it can't be clicked again
+		cardObj.addClass('flipped');
+		cardObj.removeClass('clickable');
+		
+		if (!found) {
+			// Update the miss
+			this.misses++;	
+		}
+		
+		// Update the miss
+		this.miss.html(this.misses);
+		
+		this.word.html(this.word_to_guess);
+		
+		this.setup_word();
+		
 		
 		/*
 			
@@ -166,8 +207,8 @@ var Hangman = {
 			$('.flipped').hide('slow');
 		}
 		
-		// Update the scoreboard
-		this.scoreboard.html(this.points);
+		// Update the miss
+		this.miss.html(this.points);
 		*/		
 	},
 	/*-------------------------------------------------------------------------------------------------
@@ -176,7 +217,41 @@ var Hangman = {
 	shuffle: function(obj){ 
     	for(var j, x, i = obj.length; i; j = parseInt(Math.random() * i), x = obj[--i], obj[i] = obj[j], obj[j] = x);
     	return obj;
-    }
+    },
+	
+	
+	 update_word: function(matched){
+	
+		console.log("MATCHED " + matched);
+	
+	
+	},
+	
+	setup_word: function() {
+	
+		this.word_index = 0;
+		
+		this.word_to_guess = this.words[this.word_index];
+	
+		var wordArr = [];
+		
+		var wordStr = String();
+		
+		for (var i = 0; i < this.word_to_guess.length; i++) {
+			console.log(this.word_to_guess[i]);
+			
+			wordArr[i] = "<div class='word' id='word" + this.word_to_guess[i] + "'>" + "<img src='/images/blank.png'" + " alt='" + this.word_to_guess[i] + "' height='100' width='100'" + "/>" + "</div>";
+
+			wordStr = wordStr + wordArr[i];	
+
+		}
+		
+		console.log(wordStr);
+		
+		this.word.html(wordStr);
+		
+	}
+
 	
 	
 }; // eoc
