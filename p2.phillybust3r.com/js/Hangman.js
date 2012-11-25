@@ -37,6 +37,10 @@ var Hangman = {
 	guessed: '',
 	
 	
+	// the maximum number of misses allowed
+	max_misses: 7,
+	
+	
 	
 	
 	word_to_guess: '',
@@ -65,10 +69,7 @@ var Hangman = {
 		var tilesStr = String();
 		
 		this.setup_word();
-		
-		
-	
-	
+			
 		for (var i = 0; i < (this.alphabet).length; i++) {
 		
 			this.tileArr[i] = "<div class='tile clickable' id='tile" + this.alphabet[i] + "'>" + "<img src='/images/" + this.alphabet[i] + ".png'" + " alt='" + this.alphabet[i] + "' height='40' width='40'" + "/>" + "</div>";
@@ -123,46 +124,45 @@ var Hangman = {
 	-------------------------------------------------------------------------------------------------*/
 	choose_a_card: function(cardObj) {
 	
-		//$('#alphabetwrapper, .tile').css('background-color', 'red');
+		console.log("NUM MISSES: " + this.misses);
+		
 	
-		var cardObjStr = cardObj.html();
+		if (parseInt(this.misses) < this.max_misses) {
+	
+			var cardObjStr = cardObj.html();		
 		
-		// console.log(cardObj.html());	
+			// the letter selected is at position 30		
+			var letter_clicked = cardObjStr[30];
 		
-		console.log(cardObj);
+			console.log("LETTER: " + letter_clicked);
 		
-		// the letter selected is at position 30		
-		var letter_clicked = cardObjStr[30];
+			var found = false;
 		
-		console.log("LETTER: " + letter_clicked);
-		
-		var found = false;
-		
-		// find match
-		for (var i = 0; i <	this.word_to_guess.length; i++) {
-			console.log(this.word_to_guess[i]);
-			if (letter_clicked == this.word_to_guess[i]) {
+			// find match
+			for (var i = 0; i <	this.word_to_guess.length; i++) {
+				console.log(this.word_to_guess[i]);
+				if (letter_clicked == this.word_to_guess[i]) {
 				
-				this.update_word(letter_clicked, i);
-				found = true;
-			}
+					this.update_word(letter_clicked, i);
+					found = true;
+				}
 			
 				
-		}
+			}
 		
-		// Flip the card and remove the clickable class so it can't be clicked again
-		cardObj.addClass('flipped');
-		cardObj.removeClass('clickable');
+			// Flip the card and remove the clickable class so it can't be clicked again
+			cardObj.addClass('flipped');
+			cardObj.removeClass('clickable');
 		
-		if (!found) {
+			if (!found) {
+				// Update the miss
+				this.misses++;	
+			}
+		
 			// Update the miss
-			this.misses++;	
-		}
+			this.miss.html(this.misses);
 		
-		// Update the miss
-		this.miss.html(this.misses);
-		
-		this.word_guessed();
+			this.word_guessed();
 		
 		//this.word.html(this.word_to_guess);
 		
@@ -203,7 +203,17 @@ var Hangman = {
 		
 		// Update the miss
 		this.miss.html(this.points);
-		*/		
+		*/
+		}
+		else {
+		
+			console.log("GAME OVER");
+			
+			var gameOver = "<div class='gameOver' id='gameOver'> <img src='/images/gameover.png' alt='GAME OVER' height='250' width='500'/></div>";
+			
+			this.word.html(gameOver);
+
+		}		
 	},
 	/*-------------------------------------------------------------------------------------------------
 	From: http://dzone.com/snippets/array-shuffle-javascript
