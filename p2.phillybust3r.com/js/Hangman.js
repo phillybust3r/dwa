@@ -39,8 +39,8 @@ var Hangman = {
 	// this is the array for the tiles
 	tileArr: [],
 	
-	// this keeps track of the number of matches
-	number_of_matches: 0,
+	// this keeps track of the position of matches
+	matches: [],
 	
 		
 	/*-------------------------------------------------------------------------------------------------
@@ -110,6 +110,8 @@ var Hangman = {
 		}
 		
 		tilesStr = tilesStr + "</div>";
+		
+		console.log(tilesStr);
 	
 	
 		
@@ -151,7 +153,7 @@ var Hangman = {
 			console.log(this.word_to_guess[i]);
 			if (letter_clicked == this.word_to_guess[i]) {
 				
-				this.update_word(letter_clicked);
+				this.update_word(letter_clicked, i);
 				found = true;
 			}
 			
@@ -170,9 +172,9 @@ var Hangman = {
 		// Update the miss
 		this.miss.html(this.misses);
 		
-		this.word.html(this.word_to_guess);
+		//this.word.html(this.word_to_guess);
 		
-		this.setup_word();
+	//	this.setup_word();
 		
 		
 		/*
@@ -220,10 +222,33 @@ var Hangman = {
     },
 	
 	
-	 update_word: function(matched){
+	 update_word: function(matched, index){
 	
-		console.log("MATCHED " + matched);
+		// update the matches
+		this.matches[index] = true;
+		
+		var wordStr = String();
+		
+		
+		for (var i = 0; i < this.word_to_guess.length; i++) {
 	
+			
+			
+			// display the matched letter
+			if (this.matches[i]) {
+			
+			
+				wordStr += "<div class='word' id='word" + this.word_to_guess[i] + "'>" + "<img src='/images/" + this.word_to_guess[i] + ".png'" + " alt='" + this.word_to_guess[i] + "' height='100' width='100'" + "/>" + "</div>";
+			
+				
+			}
+			// display a red block
+			else {
+				wordStr += "<div class='word' id='word" + this.word_to_guess[i] + "'>" + "<img src='/images/blank.png'" + " alt='" + this.word_to_guess[i] + "' height='100' width='100'" + "/>" + "</div>";
+			}			
+		}
+						
+		this.word.html(wordStr);
 	
 	},
 	
@@ -240,16 +265,22 @@ var Hangman = {
 		for (var i = 0; i < this.word_to_guess.length; i++) {
 			console.log(this.word_to_guess[i]);
 			
+			this.matches[false];
+			
 			wordArr[i] = "<div class='word' id='word" + this.word_to_guess[i] + "'>" + "<img src='/images/blank.png'" + " alt='" + this.word_to_guess[i] + "' height='100' width='100'" + "/>" + "</div>";
-
+			
 			wordStr = wordStr + wordArr[i];	
 
 		}
-		
-		console.log(wordStr);
-		
+			
 		this.word.html(wordStr);
 		
+	},
+	
+	word_guessed: function() {
+	
+	
+	
 	}
 
 	
