@@ -16,7 +16,7 @@
 		$(document).ready(function() {
 	
 			// Initiate our game
-			Hangman.set_board("board", "misses", "word", 10);		
+			Hangman.set_board("board", "misses", "word", "guessed", 10);		
 
 		});		
 	</script>
@@ -27,13 +27,22 @@
 
 <body>
 
-	MISSES: <div id='misses'>0</div>
+	<div id='game'><img src='/images/hangman.png' </></div>
+
+	<div id='missed'>
+	<img src='/images/misses.png' </> <div id='misses' height:200px;
+	width:200px; >0</div>
+	</div>
 	
 	<div id='word'></div>
 
 	<div id='board'></div>
 	
-	<br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
+	<img src='/images/guessed.png'/> 
+	<div id='guessed'>0</div>
+
 
 	<div style='clear:both'></div>
 	

@@ -2,6 +2,21 @@
 	font-family:consolas;
 }
 
+.game {
+
+	height:200px;
+	width:200px;
+	float:left;
+}
+
+.misses {
+	height:200px;
+	width:200px;
+	float:right;
+
+
+}
+
 .card {
 	cursor:pointer;
 	width:60px;

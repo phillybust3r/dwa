@@ -24,14 +24,19 @@ var Hangman = {
 	// {array} To label the cards with
 	alphabet: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
 	
-	// {int} Keep track of how many cards are flipped, so when two are flipped up we know it's time to flip them back down
-	flipped_card_count: 0,
 	
 	words: ['GIFTS', 'WREATH', 'THANKSGIVING', 'CHRISTMAS'],
 	
 	word_index: '',
 	
 	word: '',
+	
+	// this keeps track of the number of words guessed
+	guess_count: 0,
+	
+	guessed: '',
+	
+	
 	
 	
 	word_to_guess: '',
@@ -49,34 +54,19 @@ var Hangman = {
 	@param {int}    how_many_cards
 	@return void
 	-------------------------------------------------------------------------------------------------*/
-	set_board: function(id_of_board, id_of_miss, id_of_word, how_many_cards) {
+	set_board: function(id_of_board, id_of_miss, id_of_word, id_of_guessed) {
 			
 		// First, identify the board and the miss objects
 		this.board      = $('#' + id_of_board);
 		this.miss = $('#' + id_of_miss);
 		this.word =  $('#' + id_of_word);
+		this.guessed = $('#' + id_of_guessed);
 
 		var tilesStr = String();
 		
 		this.setup_word();
 		
 		
-		// create the tiles for the word to be guessed
-		//for (var i = 0; i < 	
-				
-		// Loop for how many cards we're playing with
-	/*	for(var i = 0; i < how_many_cards; i++) {
-			
-			// Every second card, choose a new random letter
-			if(i % 2 == 0) {
-				var random_letter = this.alphabet[Math.floor(this.alphabet.length * Math.random())];
-			}
-			
-			// Add the card to the array
-			cardsArr[i] = "<div class='ATile clickable' id='card" + i + "'>" + random_letter + "</div>";
-			
-		}
-	*/	
 	
 	
 		for (var i = 0; i < (this.alphabet).length; i++) {
@@ -95,7 +85,7 @@ var Hangman = {
 		//var tileArray = "<div class='ATile clickable' id='tile1'>V</div>";
 		
 		// Shuffle the deck / array
-	//	cardsArr = this.shuffle(cardsArr);
+		//cardsArr = this.shuffle(cardsArr);
 				
 		// Now load the cards array into a string
 	/*	for(var card in cardsArr) {
@@ -172,6 +162,8 @@ var Hangman = {
 		// Update the miss
 		this.miss.html(this.misses);
 		
+		this.word_guessed();
+		
 		//this.word.html(this.word_to_guess);
 		
 	//	this.setup_word();
@@ -231,16 +223,12 @@ var Hangman = {
 		
 		
 		for (var i = 0; i < this.word_to_guess.length; i++) {
-	
-			
 			
 			// display the matched letter
 			if (this.matches[i]) {
 			
-			
 				wordStr += "<div class='word' id='word" + this.word_to_guess[i] + "'>" + "<img src='/images/" + this.word_to_guess[i] + ".png'" + " alt='" + this.word_to_guess[i] + "' height='100' width='100'" + "/>" + "</div>";
-			
-				
+						
 			}
 			// display a red block
 			else {
@@ -279,8 +267,18 @@ var Hangman = {
 	
 	word_guessed: function() {
 	
-	
-	
+		var count = 0;
+		for (var i = 0; i < this.word_to_guess.length; i++) {
+			if (this.matches[i]) {
+				count++;
+			}
+		}
+		if (count == this.word_to_guess.length) {
+			this.guess_count++;
+
+			this.guessed.html(this.guess_count);
+			//this.guessed.html("YES");
+		}
 	}
 
 	
