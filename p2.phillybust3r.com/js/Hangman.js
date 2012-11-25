@@ -25,9 +25,9 @@ var Hangman = {
 	alphabet: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
 	
 	
-	words: ['GIFTS', 'WREATH', 'THANKSGIVING', 'CHRISTMAS'],
+	words: ['GIFTS', 'WREATH', 'THANKSGIVING', 'CHRISTMAS', 'MISTLETOE'],
 	
-	word_index: '',
+	word_index: 0,
 	
 	word: '',
 	
@@ -65,6 +65,11 @@ var Hangman = {
 		this.miss = $('#' + id_of_miss);
 		this.word =  $('#' + id_of_word);
 		this.guessed = $('#' + id_of_guessed);
+		
+		this.words = this.shuffle(this.words);
+
+		
+
 
 		var tilesStr = String();
 		
@@ -78,21 +83,8 @@ var Hangman = {
 				this.tileArr[i] = this.tileArr[i] + "<br><br><br>";
 			}
 			
-			console.log(this.tileArr[i]);
-	
 		}
 		
-			
-		//var tileArray = "<div class='ATile clickable' id='tile1'>V</div>";
-		
-		// Shuffle the deck / array
-		//cardsArr = this.shuffle(cardsArr);
-				
-		// Now load the cards array into a string
-	/*	for(var card in cardsArr) {
-			cardsStr = cardsStr + cardsArr[card];
-		}		
-	*/
 	
 		tilesStr = "<div id='alphabetwrapper'>";
 	
@@ -164,46 +156,6 @@ var Hangman = {
 		
 			this.word_guessed();
 		
-		//this.word.html(this.word_to_guess);
-		
-	//	this.setup_word();
-		
-		
-		/*
-			
-		// If we already have two cards flipped, unflip them by removing the class "flipped"
-		if(this.flipped_card_count == 2) {
-			this.board.children().removeClass('flipped');
-			this.board.children().addClass('clickable');
-			
-			// Reset the count
-			this.flipped_card_count = 0;
-		}
-								
-		// Increment count of how many cards are flipped
-		this.flipped_card_count++;
-		
-		// To see if the cards match, figure out the letter in the other card vs selected card
-		var other_card    = $('.flipped').html();
-		var selected_card = cardObj.html();
-		
-		// Flip the card and remove the clickable class so it can't be clicked again
-		cardObj.addClass('flipped');
-		cardObj.removeClass('clickable');
-	
-		// If we have a match!
-		if(other_card == selected_card) {
-		
-			// Award points
-			this.points++;	
-			
-			// Fade out the two active cards
-			$('.flipped').hide('slow');
-		}
-		
-		// Update the miss
-		this.miss.html(this.points);
-		*/
 		}
 		else {
 		
@@ -252,9 +204,10 @@ var Hangman = {
 	
 	setup_word: function() {
 	
-		this.word_index = 0;
-		
+			
 		this.word_to_guess = this.words[this.word_index];
+		
+		console.log("WORD INDEX: " + this.word_index);
 	
 		var wordArr = [];
 		
@@ -287,7 +240,9 @@ var Hangman = {
 			this.guess_count++;
 
 			this.guessed.html(this.guess_count);
-			//this.guessed.html("YES");
+			
+			// increment to the next word
+			this.word_index++;
 		}
 	}
 
