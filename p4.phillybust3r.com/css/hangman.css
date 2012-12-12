@@ -1,0 +1,88 @@
+* {
+	font-family:consolas;
+}
+
+.game {
+
+	height:200px;
+	width:200px;
+	float:left;
+}
+
+.misses {
+	height:200px;
+	width:200px;
+	float:right;
+
+
+}
+
+.card {
+	cursor:pointer;
+	width:60px;
+	font-size:25px;
+	height:65px;
+	background-color:#ED156C;
+	color:#ED156C;
+	float:left;
+	padding-top:25px;
+	margin-right:10px;
+	text-align:center;
+}
+
+.word {
+
+	cursor:pointer;
+	width:100px;
+	font-size:25px;
+	height:100px;
+	color:#ED156C;
+	float:left;
+	padding-top:2px;
+	margin-right:2px;
+	text-align:center;
+}
+
+.tile {
+	
+	
+	cursor:pointer;
+	width:40px;
+	font-size:25px;
+	height:40px;
+	color:#ED156C;
+	float:left;
+	padding-top:15px;
+	margin-right:10px;
+	text-align:center;
+
+}
+
+.flipped {
+	color:black;
+}
+
+#scoreboard {
+	font-size:25px;
+}
+
+
+#alphabetwrapper {
+			float: left;
+			clear: right;
+					
+			border:1px solid black;
+			width:650px;
+			margin:5px;
+			
+			background: white;
+			background-image:url('/images/paper-tile.png');
+
+			-webkit-border-radius: 12px;
+			border-radius: 12px;
+			-moz-background-clip: padding; 
+			-webkit-background-clip:padding-box; 
+			background-clip: padding-box;
+			padding:30px;
+}
+		

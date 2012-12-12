@@ -1,0 +1,98 @@
+/**
+My styles
+**/	
+		h1 {
+			text-align:left;
+			text-decoration:none;
+		}
+	
+		body { 
+			background: url("/images/background.png");
+			max-width: 950px;
+			margin: 0 auto;
+			
+		}
+		
+
+		#left {
+			width: 450px;
+			float: left;
+			text-align: center;
+			padding: 40px;
+		}
+		#left img{
+			width: 450px;
+			height: auto;
+			margin-top: 10px;
+		}
+		
+		#footer {
+			clear:both;
+		}
+		
+		#postwrapper {
+			float: left;
+			clear: right;
+					
+			border:1px solid black;
+			width:877px;
+			margin:5px;
+			background-image:url('/images/paper-tile.png');
+
+
+			-webkit-border-radius: 12px;
+			border-radius: 12px;
+			-moz-background-clip: padding; 
+			-webkit-background-clip:padding-box; 
+			background-clip: padding-box;
+			padding:30px;
+		}
+		
+		#postwrapper2 {
+			float: right;
+			clear: right;
+					
+			border:1px solid black;
+			width:400px;
+			margin:5px;
+			
+			background: white;
+
+
+			-webkit-border-radius: 12px;
+			border-radius: 12px;
+			-moz-background-clip: padding; 
+			-webkit-background-clip:padding-box; 
+			background-clip: padding-box;
+			padding:40px;
+		}
+		
+		#trends {
+			float: left;
+			clear: right;
+			font:15px arial,sans-serif;
+
+					
+			border:1px solid black;
+			width:370px;
+			margin:5px;
+			
+			background: pink;
+
+
+			-webkit-border-radius: 12px;
+			border-radius: 12px;
+			-moz-background-clip: padding; 
+			-webkit-background-clip:padding-box; 
+			background-clip: padding-box;
+			padding:30px;
+		}
+		
+		#right{
+			margin: 10px;
+			padding: 25px;
+			float: left;
+			clear: right;
+			width: 300px;
+				
+		}

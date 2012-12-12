@@ -1,0 +1,58 @@
+/**
+My styles
+**/	
+		h1 {
+			text-align:center;
+			text-decoration:none;
+		}
+	
+		body { 
+			background: url("../images/background.png");
+			max-width: 950px;
+			margin: 0 auto;
+			
+		}
+		
+
+		#left {
+			width: 450px;
+			float: left;
+			text-align: center;
+			padding: 40px;
+		}
+		#left img{
+			width: 450px;
+			height: auto;
+			margin-top: 10px;
+		}
+		
+		#footer {
+			clear:both;
+		}
+		
+		#wrapper {
+			float: left;
+			clear: right;
+					
+			border:1px solid black;
+			width:200px;
+			margin:20px;
+			background-image:url('/images/paper-tile.png');
+
+
+			-webkit-border-radius: 12px;
+			border-radius: 12px;
+			-moz-background-clip: padding; 
+			-webkit-background-clip:padding-box; 
+			background-clip: padding-box;
+			padding:30px;
+		}
+		
+		#right{
+			margin: 15px;
+			padding: 25px;
+			float: left;
+			clear: right;
+			width: 300px;
+				
+		}
