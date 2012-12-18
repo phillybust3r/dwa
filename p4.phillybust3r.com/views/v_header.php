@@ -1,11 +1,24 @@
+
+<link rel="stylesheet" href="../css/articles.css" type="text/css"/> 
+
+<style>
+h1{background-image:url('/images/blendr_bg.png');}
+</style>
+
+<h1>
+<img style="border-width: 0px;" src="../images/blendr.png" align="center" width="350" height="200" />
+</h1>
+
+<body>
+
+
+	
+
+
 <!-- Begin HEAD content. Taco HTML Edit could not find the HEAD section of your document. Please, add a head tag and move this content within the tag. -->
 <script type="text/javascript" src="../TacoComponents/MooTools/mootools.js"></script>
 <script type="text/javascript" src="../TacoComponents/MenuMatic/MenuMatic.js"></script>
-<link rel="stylesheet" type="text/css" href="../TacoComponents/MenuMatic/MenuMatic_myNavigationMenu_2.css" />
-
-<br>
-<br>
-<br>
+<link rel="stylesheet" type="text/css" href="../TacoComponents/MenuMatic/MenuMatic_myNavigationMenu_3.css" />
 
 <!-- End HEAD content -->
 <!-- BEGIN COMPONENT Navigation Menu - Taco HTML Edit -->
@@ -15,20 +28,15 @@ doctype declaration at the beginning of your document such as:
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 TRANSITIONAL//EN" "http://www.w3.org/TR/html4/loose.dtd">
 -->
 <ul id="myNavigationMenu">
-	<li><a href="/index">Home</a>
+	<li><a href="#">Android</a>
 	</li>
-	<li><a href="/posts/">@ Stalkrs</a>
+	<li><a href="#">IOS</a>
 	</li>
-	<li><a href="/posts/users"># Blabbrmouths</a>
+	<li><a href="#">Windows</a>
 	</li>
-	<li><a href="/posts/trends">Trends</a>
-	</li>
-	<li><a href="/users/logout">Logout</a>
+	<li><a href="#">Blackberry</a>
 	</li>
 </ul>
-
-
-
 <!-- Create a MenuMatic Instance -->
 <script type="text/javascript" >
 	window.addEvent('load', function() {			
@@ -46,6 +54,5 @@ doctype declaration at the beginning of your document such as:
 <br>
 <br>
 <br>
-<br>
-
 <!-- END COMPONENT Navigation Menu - Taco HTML Edit -->
+</body>
